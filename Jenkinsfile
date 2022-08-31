@@ -32,12 +32,13 @@ pipeline {
         always {
             // regardless if build failed or passed
             // e.g. send email to team
+            echo 'CI pipeline done'
         }
         success {
-
+            echo 'success'
         }
         failure {
-
+            echo 'failed'
         }
     }
 }
