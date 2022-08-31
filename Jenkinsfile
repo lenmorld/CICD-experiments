@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage("build") {
             steps {
-                echo 'building the app test lenny'
+                echo 'building the app test lenny come on'
                // sh 'npm install'
                // sh 'npm build'
             }
