@@ -4,7 +4,7 @@ pipeline {
         stage("build") {
             steps {
                 echo 'building the app test lenny come on'
-                echo BRANCH_NAME
+                echo env.BRANCH_NAME
                // sh 'npm install'
                // sh 'npm build'
             }
@@ -13,7 +13,7 @@ pipeline {
         stage("test") {
             when {
                 expression {
-                    BRANCH_NAME == 'develop'
+                    env.BRANCH_NAME == 'develop'
                 }
             }
 
