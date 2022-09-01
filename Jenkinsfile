@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage("build") {
             steps {
-                echo 'building the app test lenny'
+                echo 'building the app test lenny test'
                 echo "branch: ${env.BRANCH_NAME}"
                // sh 'npm install'
                // sh 'npm build'
