@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDENTIALS=credentisl('dockerhub') 
+        DOCKERHUB_CREDENTIALS=credentisl('dockerhub')
     }
 
     stages {
@@ -31,11 +31,5 @@ pipeline {
 				sh 'docker push lenmorld/node_app:latest'
 			}
 		}
-    }
-
-    post {
-        always {
-            sh 'docker logout'
-        }
     }
 }
