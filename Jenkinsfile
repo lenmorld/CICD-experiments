@@ -13,7 +13,8 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'echo test 1'
-                sh 'node --version'
+                sh 'pwd'
+                sh 'ls'
             }
         }
 
