@@ -1,13 +1,13 @@
 pipeline {
-    agent any
-    environment {
-        DOCKERHUB_CREDENTIALS=credentisl('dockerhub')
+    agent {
+        docker { image 'node:16.13.1-alpine' }
     }
     stages {
-		stage('Build') {
-			steps {
-				sh 'docker build -t lenmorld/node_app:latest .'
-			}
-		}
+        stage('Test') {
+            steps {
+                sh 'echo test 1'
+                sh 'node --version'
+            }
+        }
     }
 }
