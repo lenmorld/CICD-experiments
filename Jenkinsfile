@@ -28,12 +28,11 @@ pipeline {
 				sh 'docker push lenmorld/node_app:latest'
 			}
 		}
+    }
 
-        post {
-		    always {
-			    sh 'docker logout'
-		    }
-	    }
-
+    post {
+        always {
+            sh 'docker logout'
+        }
     }
 }
