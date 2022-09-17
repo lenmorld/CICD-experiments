@@ -13,3 +13,6 @@ docker run -d \
 	 --name node_app \
 	 lenmorld/node_app:latest
 ```
+
+# need to expose local Jenkins in 8080 for Github webhooks
+npx localtunnel --port 8000

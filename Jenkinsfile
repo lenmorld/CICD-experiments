@@ -12,7 +12,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'echo test 2'
+                sh 'echo test 3'
                 sh 'pwd'
                 sh 'ls'
             }
