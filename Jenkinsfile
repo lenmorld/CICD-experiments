@@ -4,12 +4,6 @@ pipeline {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     }
     stages {
-		stage('Test') {
-			steps {
-				sh 'npm test'
-			}
-		}
-
 		stage('Build') {
 			steps {
 				sh 'docker build -t lenmorld/node_app:latest .'
@@ -21,6 +15,7 @@ pipeline {
                 sh 'echo test 3'
                 sh 'pwd'
                 sh 'ls'
+				sh 'npm test'
             }
         }
 
