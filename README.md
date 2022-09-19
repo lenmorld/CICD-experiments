@@ -6,7 +6,7 @@ Build
 docker build -t lenmorld/node_app:latest .
 ```
 
-Run
+Run docker image
 ```
 docker run -d \
 	 -p4000:4000 \

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-ui
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: app-ui
+  template:
+    metadata:
+      labels:
+        app: app-ui
+    spec:
+      containers:
+        - name: app-ui
+          image: lenmorld/node_app
+          ports:
+            - containerPort: 4000
+  
