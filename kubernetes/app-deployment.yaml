@@ -18,4 +18,3 @@ spec:
           image: lenmorld/node_app
           ports:
             - containerPort: 4000
-  
