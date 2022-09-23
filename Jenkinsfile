@@ -3,6 +3,7 @@ pipeline {
         docker { 
 			image 'node:16.13.1-alpine'
 			args '-u root:root'
+			reuseNode true
 		}
     }
 	environment {
@@ -30,6 +31,7 @@ pipeline {
             }
         }
 
+		// TODO: FIX Docker not found, after adding Node
 		stage('Build') {
 			steps {
 				sh 'docker build -t lenmorld/node_app:latest .'
