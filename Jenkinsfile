@@ -10,7 +10,7 @@ pipeline {
 				docker { 
 					image 'node:16.13.1-alpine'
 					args '-u root:root'
-					reuseNode true
+					// reuseNode true
 				}
 			}
 			
