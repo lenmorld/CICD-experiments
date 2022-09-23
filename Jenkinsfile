@@ -13,6 +13,7 @@ pipeline {
                 sh 'echo test 4'
                 sh 'pwd'
                 sh 'ls'
+				sh 'npm install'
 				sh 'npm test'
             }
         }
