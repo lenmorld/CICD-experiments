@@ -10,18 +10,36 @@ pipeline {
 				docker { 
 					image 'node:16.13.1-alpine'
 					args '-u root:root'
+					// Run the container on the node specified at the
+                    // top-level of the Pipeline, in the same workspace,
+                    // rather than on a new node entirely
 					// reuseNode true
 				}
 			}
-			
-            steps {
-                sh 'node --version'
-				sh 'npm install'
-				sh 'npm test'
-            }
-        }
 
-		// TODO: FIX Docker not found, after adding Node
+
+			stages {
+				stage('Version') {
+					steps {
+						sh 'node --version'
+					}
+				}
+
+				stage('Install') {
+					steps {
+						sh 'echo test 4'
+						sh 'pwd'
+						sh 'ls'
+						sh 'npm install'
+					}
+				}
+				stage('Test') {
+					steps {
+						sh 'npm test'
+					}
+				}
+        	}
+
 		stage('Build') {
 			steps {
 				sh 'docker build -t lenmorld/node_app:latest .'
