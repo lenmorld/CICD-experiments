@@ -1,28 +1,22 @@
 pipeline {
-    agent {
-		docker {
-			image 'node:16.13.1-alpine'
-		}
-	}
+    agent any
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     }
     stages {
-        stage('Test') {
-            steps {
-                sh 'echo test 4'
-                sh 'pwd'
-                sh 'ls'
-				sh 'npm install'
-				sh 'npm test'
-            }
-        }
-
 		stage('Build') {
 			steps {
 				sh 'docker build -t lenmorld/node_app:latest .'
 			}
 		}
+
+        stage('Test') {
+            steps {
+                sh 'echo test 3'
+                sh 'pwd'
+                sh 'ls'
+            }
+        }
 
         stage('Login') {
 			steps {
