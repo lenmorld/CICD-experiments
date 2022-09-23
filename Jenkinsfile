@@ -1,14 +1,15 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:lts-buster-slim'
+        }
+    }
     environment {
+		CI = 'true'
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     }
     stages {
         stage('Test') {
-			agent {
-				docker { image 'node:16.13.1-alpine' }
-			}
-
             steps {
                 sh 'echo test 4'
                 sh 'pwd'
@@ -36,4 +37,9 @@ pipeline {
 			}
 		}
     }
+	post {
+		always {
+			sh 'docker logout'
+		}
+	}
 }
