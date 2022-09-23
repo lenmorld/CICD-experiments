@@ -61,8 +61,9 @@ pipeline {
 		stage('Deploy') {
 			steps {
 				echo "current version: ${currentBuild.number}"
-				git tag "0.0.${currentBuild.number}"
-				git push origin "0.0.${currentBuild.number}"
+				git status
+				// git tag "0.0.${currentBuild.number}"
+				// git push origin "0.0.${currentBuild.number}"
 			}
 		}
     }
