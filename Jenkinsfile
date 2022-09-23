@@ -17,7 +17,6 @@ pipeline {
 				}
 			}
 
-
 			stages {
 				stage('Version') {
 					steps {
@@ -39,20 +38,21 @@ pipeline {
 					}
 				}
         	}
+		}
 
-		stage('Build') {
+		stage('Dcoker build') {
 			steps {
 				sh 'docker build -t lenmorld/node_app:latest .'
 			}
 		}
 
-        stage('Login') {
+        stage('Docker login') {
 			steps {
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 			}
 		}
 
-        stage('Push') {
+        stage('Docker push') {
 			steps {
 				sh 'docker push lenmorld/node_app:latest'
 			}
