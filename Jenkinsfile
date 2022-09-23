@@ -40,7 +40,7 @@ pipeline {
         	}
 		}
 
-		stage('Dcoker build') {
+		stage('Docker build') {
 			steps {
 				sh 'docker build -t lenmorld/node_app:latest .'
 			}
@@ -55,6 +55,13 @@ pipeline {
         stage('Docker push') {
 			steps {
 				sh 'docker push lenmorld/node_app:latest'
+			}
+		}
+
+		stage('Deploy') {
+			steps {
+				echo "current version: ${currentBuild.number}"
+				// git tag
 			}
 		}
     }
