@@ -62,8 +62,8 @@ pipeline {
 			steps {
 				sh "echo current version: ${currentBuild.number}"
 				sh "git status"
-				// git tag "0.0.${currentBuild.number}"
-				// git push origin "0.0.${currentBuild.number}"
+				sh 'git tag "0.0.${currentBuild.number}"'
+				sh 'git push origin "0.0.${currentBuild.number}"'
 			}
 		}
     }
