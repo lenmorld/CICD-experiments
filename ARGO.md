@@ -43,3 +43,7 @@ argocd login localhost:8081
 
 
 ~/telebit http 8081
+
+
+---
+kubectl apply -f application.yaml
