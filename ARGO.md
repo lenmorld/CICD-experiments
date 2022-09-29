@@ -12,10 +12,16 @@ argocd app get app-ui
 
 ```
 argocd app sync app-ui
+
+# sync every 3 minutes
+argocd app set <APPNAME> --sync-policy automated
 ```
 
 curl http://192.168.49.2:4000
 
+
+# TODO:
+learn how to make declarative Argo
 
 ```
 apiVersion: v1
@@ -32,3 +38,8 @@ spec:
 
 
 ZL7o1guioMb0ISnk
+
+argocd login localhost:8081
+
+
+~/telebit http 8081
