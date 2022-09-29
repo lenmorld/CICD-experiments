@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-ui
+  namespace:  
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/lenmorld/CICD-experiments.git
+    targetRevision: HEAD
+    path: kubernetes
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+
+    automated:
+      selfHeal: true
+      prune: true
