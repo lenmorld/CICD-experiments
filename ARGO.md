@@ -69,3 +69,7 @@ kubectl apply -f application.yaml
 
 - try just jenkins, without Argo
 - update image in deployment.yaml then do a kubectl apply ...
+
+```
+kubectl apply -f application.yaml
+```
