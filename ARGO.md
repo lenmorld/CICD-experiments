@@ -1,3 +1,19 @@
+if local
+```
+minikube start
+minikube status
+```
+
+```
+kubectl create namespace argocd
+```
+
+apply yaml file that installs everything ArgoCD needs
+instal to ArgoCD namespace
+```
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
+
 ```
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d; echo
 ```
@@ -47,3 +63,9 @@ argocd login localhost:8081
 
 ---
 kubectl apply -f application.yaml
+
+
+# TODO:
+
+- try just jenkins, without Argo
+- update image in deployment.yaml then do a kubectl apply ...

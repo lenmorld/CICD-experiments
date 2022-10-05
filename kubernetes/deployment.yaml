@@ -3,8 +3,7 @@ kind: Deployment
 metadata:
   name: app-ui
 spec:
-  replicas: 1
-  revisionHistoryLimit: 3
+  replicas: 2
   selector:
     matchLabels:
       app: app-ui

@@ -1,8 +1,8 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app-ui-2
-  namespace:  
+  name: app-ui-argo-application
+  namespace: argocd
 spec:
   project: default
   source:
@@ -11,7 +11,7 @@ spec:
     path: kubernetes
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: app-ui
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
