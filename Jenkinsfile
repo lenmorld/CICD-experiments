@@ -64,6 +64,15 @@ pipeline {
 				sh "git status"
 				sh "git tag 0.0.${currentBuild.number}"
 				sh "git push origin 0.0.${currentBuild.number}"
+
+				sh "export IMAGE_VERSION=0.0.${currentBuild.number}"
+				sh "envsubst < kubernetes/deployment.yaml >> kubernetes/deployment"
+				sh "cat kubernetes/deployment > kubernetes/deployment.yaml"
+				sh "rm kubernetes/deployment"
+
+				sh "git add ."
+				sh "git commit -m 'update'"
+				sh "git push origin master"
 			}
 		}
     }
