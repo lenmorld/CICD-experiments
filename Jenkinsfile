@@ -60,17 +60,25 @@ pipeline {
 
 		stage('Deploy') {
 			steps {
-				sh "echo current version: ${currentBuild.number}"
-				sh "git status"
-				sh "git tag 0.0.${currentBuild.number}"
-				sh "git push origin 0.0.${currentBuild.number}"
+				// sh "echo current version: ${currentBuild.number}"
+				// sh "git status"
+				// sh "git tag 0.0.${currentBuild.number}"
+				// sh "git push origin 0.0.${currentBuild.number}"
 
-				sh "export IMAGE_VERSION=lenmorld/node_app:0.0.${currentBuild.number}"
+				// sh "export IMAGE_VERSION=lenmorld/node_app:0.0.${currentBuild.number}"
 
 		        // sh '''#!/bin/bash
 				// 	envsubst < kubernetes/deployment.yaml >> kubernetes/deployment
 				// 	cat kubernetes/deployment > kubernetes/deployment.yaml
          		// '''
+
+				script {
+					def command = $/"cat kubernetes/deployment.yaml > kubernetes/deployment"/$
+					res = sh(returnStdout: true, script: command).trim()
+					sh "echo ${res}"
+					sh "cat kubernetes/deployment"
+					sh "rm kubernetes/deployment"
+				}
 
 				def command = $/"cat kubernetes/deployment.yaml > kubernetes/deployment"/$
 				res = sh(returnStdout: true, script: command).trim()
