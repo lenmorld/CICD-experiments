@@ -66,15 +66,23 @@ pipeline {
 				sh "git push origin 0.0.${currentBuild.number}"
 
 				sh "export IMAGE_VERSION=lenmorld/node_app:0.0.${currentBuild.number}"
-				sh "envsubst < kubernetes/deployment.yaml >> kubernetes/deployment"
-				sh "cat kubernetes/deployment > kubernetes/deployment.yaml"
+
+		        sh '''#!/bin/bash
+					envsubst < kubernetes/deployment.yaml >> kubernetes/deployment
+					cat kubernetes/deployment > kubernetes/deployment.yaml
+         		'''
+
+				// sh "envsubst < kubernetes/deployment.yaml >> kubernetes/deployment"
+				// sh "cat kubernetes/deployment > kubernetes/deployment.yaml"
 				sh "rm kubernetes/deployment"
+
+				sh "git show-ref"
 
 				sh "git checkout master"
 
 				sh "git add ."
 				sh "git commit -m \"update\""
-				sh "git push origin master"
+				sh "git push origin HEAD:master"
 			}
 		}
     }
