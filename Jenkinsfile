@@ -73,7 +73,7 @@ pipeline {
          		// '''
 
 				script {
-					def command = $/"cat kubernetes/deployment.yaml > kubernetes/deployment"/$
+					def command = $/"cat kubernetes/deployment.yaml >> kubernetes/deployment"/$
 					res = sh(returnStdout: true, script: command).trim()
 					sh "echo ${res}"
 					sh "cat kubernetes/deployment"
