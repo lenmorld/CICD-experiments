@@ -72,11 +72,13 @@ pipeline {
 				// 	cat kubernetes/deployment > kubernetes/deployment.yaml
          		// '''
 
-				sh 'envsubst < kubernetes/deployment.yaml >> kubernetes/deployment'
+				sh 'envsubst < "kubernetes/deployment.yaml" >> "kubernetes/deployment"'
 				sh 'cat kubernetes/deployment > kubernetes/deployment.yaml'
 				sh "rm kubernetes/deployment"
 
 				sh "git show-ref"
+
+				sh "git stash save"
 
 				sh "git checkout master"
 
