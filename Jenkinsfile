@@ -71,7 +71,7 @@ pipeline {
 				sh "rm kubernetes/deployment"
 
 				sh "git add ."
-				sh "git commit -m 'update'"
+				sh "git commit -m \"update\""
 				sh "git push origin master"
 			}
 		}
