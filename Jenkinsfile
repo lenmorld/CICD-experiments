@@ -42,7 +42,7 @@ pipeline {
 
 		stage('Docker build') {
 			steps {
-				sh 'docker build -t lenmorld/node_app:latest .'
+				sh "docker build -t lenmorld/node_app:0.0.${currentBuild.number} ."
 			}
 		}
 
@@ -54,7 +54,7 @@ pipeline {
 
         stage('Docker push') {
 			steps {
-				sh 'docker push lenmorld/node_app:latest'
+				sh "docker push lenmorld/node_app:0.0.${currentBuild.number}"
 			}
 		}
 
