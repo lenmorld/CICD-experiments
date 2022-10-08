@@ -80,13 +80,6 @@ pipeline {
 					sh "rm kubernetes/deployment"
 				}
 
-				def command = $/"cat kubernetes/deployment.yaml > kubernetes/deployment"/$
-				res = sh(returnStdout: true, script: command).trim()
-				sh "echo ${res}"
-				sh "cat kubernetes/deployment"
-				sh "rm kubernetes/deployment"
-
-
 				// sh 'envsubst < "kubernetes/deployment.yaml" >> "kubernetes/deployment"'
 				// sh 'cat kubernetes/deployment > kubernetes/deployment.yaml'
 				// sh "rm kubernetes/deployment"
