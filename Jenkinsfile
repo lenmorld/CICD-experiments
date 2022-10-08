@@ -67,13 +67,13 @@ pipeline {
 
 				sh "export IMAGE_VERSION=lenmorld/node_app:0.0.${currentBuild.number}"
 
-		        sh '''#!/bin/bash
-					envsubst < kubernetes/deployment.yaml >> kubernetes/deployment
-					cat kubernetes/deployment > kubernetes/deployment.yaml
-         		'''
+		        // sh '''#!/bin/bash
+				// 	envsubst < kubernetes/deployment.yaml >> kubernetes/deployment
+				// 	cat kubernetes/deployment > kubernetes/deployment.yaml
+         		// '''
 
-				// sh "envsubst < kubernetes/deployment.yaml >> kubernetes/deployment"
-				// sh "cat kubernetes/deployment > kubernetes/deployment.yaml"
+				sh "envsubst \< kubernetes/deployment.yaml \>\> kubernetes/deployment"
+				sh "cat kubernetes/deployment \> kubernetes/deployment.yaml"
 				sh "rm kubernetes/deployment"
 
 				sh "git show-ref"
