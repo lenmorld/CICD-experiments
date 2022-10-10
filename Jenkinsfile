@@ -73,16 +73,16 @@ pipeline {
          		// '''
 
 				// sh "chmod +x -R ${env.WORKSPACE}/jenkins"
-				// sh 'jenkins/lenny.sh'
+				sh 'jenkins/lenny.sh'
 
-				script {
-					sh "touch kubernetes/deployment"
-					def command = $/"cat kubernetes/deployment.yaml > kubernetes/deployment"/$
-					res = sh(returnStdout: true, script: command).trim()
-					sh "echo ${res}"
-					sh "cat kubernetes/deployment"
-					sh "rm kubernetes/deployment"
-				}
+				// script {
+					// sh "touch kubernetes/deployment"
+					// def command = $/"cat kubernetes/deployment.yaml > kubernetes/deployment"/$
+					// res = sh(returnStdout: true, script: command).trim()
+					// sh "echo ${res}"
+					// sh "cat kubernetes/deployment"
+					// sh "rm kubernetes/deployment"
+				// }
 
 				// sh 'envsubst < "kubernetes/deployment.yaml" >> "kubernetes/deployment"'
 				// sh 'cat kubernetes/deployment > kubernetes/deployment.yaml'
