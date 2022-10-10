@@ -72,7 +72,7 @@ pipeline {
 				// 	cat kubernetes/deployment > kubernetes/deployment.yaml
          		// '''
 
-				sh "chmod +x -R ${env.WORKSPACE}"
+				sh "chmod +x -r ${env.WORKSPACE}"
 				sh './jenkins/lenny.sh'
 
 				// script {
