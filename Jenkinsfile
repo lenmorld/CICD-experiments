@@ -24,19 +24,19 @@ pipeline {
 					}
 				}
 
-				stage('Install') {
-					steps {
-						sh 'echo test 5'
-						sh 'pwd'
-						sh 'ls'
-						sh 'npm install'
-					}
-				}
-				stage('Test') {
-					steps {
-						sh 'npm test'
-					}
-				}
+				// stage('Install') {
+				// 	steps {
+				// 		sh 'echo test 5'
+				// 		sh 'pwd'
+				// 		sh 'ls'
+				// 		sh 'npm install'
+				// 	}
+				// }
+				// stage('Test') {
+				// 	steps {
+				// 		sh 'npm test'
+				// 	}
+				// }
         	}
 		}
 
