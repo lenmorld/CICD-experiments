@@ -72,8 +72,8 @@ pipeline {
 				// 	cat kubernetes/deployment > kubernetes/deployment.yaml
          		// '''
 
-				sh "chmod +x ${env.WORKSPACE}/jenkins/lenny.sh"
-				sh './jenkins/lenny.sh'
+				// sh "chmod +x -R ${env.WORKSPACE}/jenkins"
+				sh 'jenkins/lenny.sh'
 
 				// script {
 					// sh "touch kubernetes/deployment"
