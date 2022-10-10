@@ -75,6 +75,7 @@ pipeline {
 				// sh "chmod +x -R ${env.WORKSPACE}/jenkins"
 				sh "pwd"
 				sh "ls -la"
+				sh "chmod +x jenkins/lenny.sh"
 				sh 'jenkins/lenny.sh'
 
 				// script {
