@@ -73,6 +73,8 @@ pipeline {
          		// '''
 
 				// sh "chmod +x -R ${env.WORKSPACE}/jenkins"
+				sh "pwd"
+				sh "ls -la"
 				sh 'jenkins/lenny.sh'
 
 				// script {
