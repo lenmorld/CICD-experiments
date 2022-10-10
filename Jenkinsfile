@@ -5,40 +5,40 @@ pipeline {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     }
     stages {
-        // stage('Node') {
-		// 	agent {
-		// 		docker { 
-		// 			image 'node:16.13.1-alpine'
-		// 			args '-u root:root'
-		// 			// Run the container on the node specified at the
-        //             // top-level of the Pipeline, in the same workspace,
-        //             // rather than on a new node entirely
-		// 			// reuseNode true
-		// 		}
-		// 	}
+        stage('Node') {
+			agent {
+				docker { 
+					image 'node:16.13.1-alpine'
+					args '-u root:root'
+					// Run the container on the node specified at the
+                    // top-level of the Pipeline, in the same workspace,
+                    // rather than on a new node entirely
+					// reuseNode true
+				}
+			}
 
-		// 	stages {
-		// 		stage('Version') {
-		// 			steps {
-		// 				sh 'node --version'
-		// 			}
-		// 		}
+			stages {
+				stage('Version') {
+					steps {
+						sh 'node --version'
+					}
+				}
 
-		// 		stage('Install') {
-		// 			steps {
-		// 				sh 'echo test 5'
-		// 				sh 'pwd'
-		// 				sh 'ls'
-		// 				sh 'npm install'
-		// 			}
-		// 		}
-		// 		stage('Test') {
-		// 			steps {
-		// 				sh 'npm test'
-		// 			}
-		// 		}
-        // 	}
-		// }
+				stage('Install') {
+					steps {
+						sh 'echo test 5'
+						sh 'pwd'
+						sh 'ls'
+						sh 'npm install'
+					}
+				}
+				stage('Test') {
+					steps {
+						sh 'npm test'
+					}
+				}
+        	}
+		}
 
 		// stage('Docker build') {
 		// 	steps {
