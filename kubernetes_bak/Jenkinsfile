@@ -76,8 +76,10 @@ pipeline {
 				sh "pwd"
 				sh "ls -la"
 				sh "chmod +x jenkins/lenny.sh"
-				sh "jenkins/lenny.sh 0.0.${currentBuild.number}"
-				// sh "jenkins/lenny.sh"
+				sh 'jenkins/lenny.sh'
+
+				sh "chmod +x jenkins/deploy.sh"
+				sh 'jenkins/lenny.sh'
 
 				// script {
 					// sh "touch kubernetes/deployment"
