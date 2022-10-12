@@ -5,6 +5,8 @@ echo "script args: $0 $1 $2"
 export LENNY_VERSION=$1
 envsubst < kubernetes/lenny.yaml >> kubernetes/lenny
 cat kubernetes/lenny > kubernetes/lenny.yaml
+echo "kubernetes/lenny.yaml"
 cat kubernetes/lenny.yaml
+echo "kubernetes/lenny"
 cat kubernetes/lenny
 rm kubernetes/lenny
