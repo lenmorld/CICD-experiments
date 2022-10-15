@@ -1,4 +1,6 @@
-def globalVar
+// def not allowed in Declartive pipeline
+// def globalVar
+
 pipeline {
     agent any
 	environment {
@@ -17,6 +19,19 @@ pipeline {
                     // rather than on a new node entirely
 					// reuseNode true
 				}
+			}
+		}
+
+		stage('Scripted') {
+			steps {
+				echo 'scripted'
+				script {
+					def browsers  = ['crhome', 'firefox']
+
+					for (int i=0; i < browsers.size(); i++) {
+						echo "Testing the ${browsers[i]} browser"
+					}
+                }
 			}
 		}
 
