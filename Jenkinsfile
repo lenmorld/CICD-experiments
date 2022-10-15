@@ -35,7 +35,7 @@ pipeline {
     }
 	post {
 		always {
-			echo 'test var again: ${TEST_VAR_LENNY}'
+			echo "test var again: ${TEST_VAR_LENNY}"
 		}
 	}
 }
