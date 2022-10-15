@@ -6,19 +6,6 @@ pipeline {
 		TEST_VAR_LENNY = 'lennythedev1.0'
 	}
     stages {
-        stage('Node') {
-			agent {
-				docker { 
-					image 'node:16.13.1-alpine'
-					args '-u root:root'
-					// Run the container on the node specified at the
-                    // top-level of the Pipeline, in the same workspace,
-                    // rather than on a new node entirely
-					// reuseNode true
-				}
-			}
-		}
-
 		stage('Scripted') {
 			steps {
 				echo 'scripted'
@@ -48,7 +35,7 @@ pipeline {
     }
 	post {
 		always {
-			sh 'docker logout'
+			echo 'test var again: ${TEST_VAR_LENNY}'
 		}
 	}
 }
