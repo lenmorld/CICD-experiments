@@ -1,6 +1,3 @@
-// def not allowed in Declartive pipeline
-// def globalVar
-
 pipeline {
     agent any
 	environment {
