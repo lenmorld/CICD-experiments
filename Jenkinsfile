@@ -75,8 +75,8 @@ pipeline {
 		stage('Git push') {
 			steps {
 				sh "git show-ref"
-				sh "git checkout master"
 				sh "git reset --hard HEAD"
+				sh "git checkout master"
 
 				sh "git add ."
 				sh "git commit -m \"update image in deployment.yaml\""
