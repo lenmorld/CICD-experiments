@@ -1,10 +1,12 @@
 #!/bin/bash
-echo "Hello world"
 
-# test
-# export IMAGE_VERSION=lenmorld/node_app:0.0.${currentBuild.number}
-echo "Image version: ${IMAGE_VERSION}"
+echo "=== bash script ==="
+echo "Hello world"
+printenv
+echo "Image version: $1"
+export IMAGE_VERSION=$1
 envsubst < kubernetes/deployment.yaml >> kubernetes/deployment
 cat kubernetes/deployment > kubernetes/deployment.yaml
 cat kubernetes/deployment.yaml
 rm kubernetes/deployment
+echo "=== end of bash script ==="

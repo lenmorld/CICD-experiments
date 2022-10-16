@@ -74,7 +74,7 @@ pipeline {
 		stage('Deploy to k8s') {
 			steps {
 				sh "echo current version: ${CURRENT_VERSION}"
-				sh "export IMAGE_VERSION=lenmorld/node_app:${CURRENT_VERSION}"
+				// sh "export IMAGE_VERSION=lenmorld/node_app:${CURRENT_VERSION}"
 
 				echo "> Running bash script to deploy"
 
@@ -82,7 +82,7 @@ pipeline {
 				sh "ls -la"
 
 				sh "chmod +x jenkins/deploy.sh"
-				sh 'jenkins/deploy.sh'
+				sh "jenkins/deploy.sh lenmorld/node_app:${CURRENT_VERSION}"
 			}
 		}
 
@@ -90,7 +90,7 @@ pipeline {
 			steps {
 				sh "git add ."
 				sh "git commit -m \"update image in deployment.yaml\""
-				sh "git push origin HEAD:master"
+				sh "git push origin HEAD:master -f"
 			}
 		}
 
