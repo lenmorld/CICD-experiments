@@ -1,6 +1,7 @@
 #!/bin/bash
 echo "Hello world"
 
+# test
 # export IMAGE_VERSION=lenmorld/node_app:0.0.${currentBuild.number}
 echo "Image version: ${IMAGE_VERSION}"
 envsubst < kubernetes/deployment.yaml >> kubernetes/deployment
