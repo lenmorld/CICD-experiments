@@ -67,6 +67,7 @@ pipeline {
 				sh "git stash save"
 				// sh "git reset --hard HEAD"
 				sh "git checkout master"
+				sh "git pull origin master"
 			}
 		}
 
