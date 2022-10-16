@@ -63,7 +63,9 @@ pipeline {
 		stage('Git cleanup') {
 			steps {
 				sh "git show-ref"
-				sh "git reset --hard HEAD"
+				sh "git status"
+				sh "git stash save"
+				// sh "git reset --hard HEAD"
 				sh "git checkout master"
 			}
 		}
@@ -74,7 +76,7 @@ pipeline {
 				sh "export IMAGE_VERSION=lenmorld/node_app:${CURRENT_VERSION}"
 
 				echo "> Running bash script to deploy"
-				
+
 				sh "pwd"
 				sh "ls -la"
 
