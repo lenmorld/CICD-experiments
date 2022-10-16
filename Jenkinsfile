@@ -68,7 +68,7 @@ pipeline {
 				echo "> Running bash script to deploy"
 
 				sh "chmod +x jenkins/deploy.sh"
-				sh 'jenkins/lenny.sh'
+				sh 'jenkins/deploy.sh'
 			}
 		}
 
