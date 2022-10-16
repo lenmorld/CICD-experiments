@@ -62,12 +62,13 @@ pipeline {
 
 		stage('Git cleanup') {
 			steps {
+				sh "git config pull.rebase false"
 				sh "git show-ref"
 				sh "git status"
 				sh "git stash save"
 				// sh "git reset --hard HEAD"
 				sh "git checkout master"
-				sh "git pull origin master"
+				sh "git pull origin master -f"
 			}
 		}
 
