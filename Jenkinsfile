@@ -3,42 +3,98 @@ pipeline {
 	environment {
 		CI = 'true'
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-		TEST_VAR_LENNY = 'lennythedev1.0'
 		CURRENT_VERSION= "0.0.${currentBuild.number}"
-	}
+    }
     stages {
-		stage('Scripted') {
-			steps {
-				echo 'scripted'
-				script {
-					def browsers  = ['crhome', 'firefox']
+        stage('Node') {
+			agent {
+				docker { 
+					image 'node:16.13.1-alpine'
+					args '-u root:root'
+					// Run the container on the node specified at the
+                    // top-level of the Pipeline, in the same workspace,
+                    // rather than on a new node entirely
+					// reuseNode true
+				}
+			}
 
-					for (int i=0; i < browsers.size(); i++) {
-						echo "Testing the ${browsers[i]} browser"
+			stages {
+				stage('Version') {
+					steps {
+						sh 'node --version'
 					}
-                }
+				}
+
+				stage('Install') {
+					steps {
+						sh 'echo test 5'
+						sh 'pwd'
+						sh 'ls'
+						sh 'npm install'
+					}
+				}
+
+				stage('Test') {
+					steps {
+						sh 'npm test'
+					}
+				}
+        	}
+		}
+
+		stage('Docker build') {
+			steps {
+				sh "docker build -t lenmorld/node_app:${CURRENT_VERSION} ."
 			}
 		}
 
-		stage('Stage 1') {
+        stage('Docker login') {
 			steps {
-				echo "Test var value: ${TEST_VAR_LENNY}"
-				echo 'printenv: >>>'
-				sh 'printenv'
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 			}
 		}
 
-		stage('Stage 2') {
+        stage('Docker push') {
 			steps {
-				echo "branch name: ${env.GIT_BRANCH}"
-				echo "branch name: ${GIT_BRANCH}"
-				echo "current version: ${CURRENT_VERSION}"
+				sh "docker push lenmorld/node_app:${CURRENT_VERSION}"
+			}
+		}
+
+		stage('Deploy to k8s') {
+			steps {
+				sh "echo current version: ${CURRENT_VERSION}"
+				sh "export IMAGE_VERSION=lenmorld/node_app:${CURRENT_VERSION}"
+
+				echo "> Running bash script to deploy"
+
+				sh "chmod +x jenkins/deploy.sh"
+				sh 'jenkins/lenny.sh'
+			}
+		}
+
+		stage('Git push') {
+			steps {
+				sh "git show-ref"
+				sh "git checkout master"
+				sh "git reset --hard HEAD"
+
+				sh "git add ."
+				sh "git commit -m \"update image in deployment.yaml\""
+				sh "git push origin HEAD:master"
+			}
+		}
+
+		stage('Git tag') {
+			steps {
+				sh "git status"
+				sh "git tag ${CURRENT_VERSION}"
+				sh "git push origin ${CURRENT_VERSION}"
 			}
 		}
     }
 	post {
 		always {
-			echo "test var again: ${TEST_VAR_LENNY}"
+			sh 'docker logout'
 		}
 	}
 }
