@@ -4,7 +4,6 @@ pipeline {
 		CI = 'true'
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
 		TEST_VAR_LENNY = 'lennythedev1.0'
-		CURRENT_VERSION= "0.0.${currentBuild.number}"
 	}
     stages {
 		stage('Scripted') {
@@ -30,9 +29,7 @@ pipeline {
 
 		stage('Stage 2') {
 			steps {
-				echo "branch name: ${env.GIT_BRANCH}"
-				echo "branch name: ${GIT_BRANCH}"
-				echo "current version: ${CURRENT_VERSION}"
+				echo "branch name: ${env.BRANCH_NAME}"
 			}
 		}
     }
