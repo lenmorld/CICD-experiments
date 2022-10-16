@@ -74,6 +74,9 @@ pipeline {
 				sh "export IMAGE_VERSION=lenmorld/node_app:${CURRENT_VERSION}"
 
 				echo "> Running bash script to deploy"
+				
+				sh "pwd"
+				sh "ls -la"
 
 				sh "chmod +x jenkins/deploy.sh"
 				sh 'jenkins/deploy.sh'
