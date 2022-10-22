@@ -18,12 +18,12 @@ pipeline {
 				}
 			}
 
-			// stages {
-			// 	stage('Version') {
-			// 		steps {
-			// 			sh 'node --version'
-			// 		}
-			// 	}
+			stages {
+				stage('Version') {
+					steps {
+						sh 'node --version'
+					}
+				}
 
 			// 	stage('Install') {
 			// 		steps {
