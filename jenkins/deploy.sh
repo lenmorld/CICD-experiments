@@ -5,7 +5,7 @@ echo "Hello world"
 echo "Image version: $1"
 export IMAGE_VERSION="$1"
 printenv
-envsubst < kubernetes/template.yaml > kubernetes/deployment.yaml
+envsubst < templates/template.yaml > kubernetes/deployment.yaml
 echo "===== result of envsubst ===="
 cat kubernetes/deployment.yaml
 echo "===== end of envsubst"
