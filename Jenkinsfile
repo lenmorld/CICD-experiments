@@ -35,6 +35,12 @@ pipeline {
 				echo "current version: ${CURRENT_VERSION}"
 			}
 		}
+
+		stage('Stage 3') {
+			steps {
+				sh "cat kubernetes/deployment.yaml"
+			}
+		}
     }
 	post {
 		always {
