@@ -15,5 +15,6 @@ spec:
       containers:
         - name: app-ui
           # image: lenmorld/node_app:1.0.1
+          image: $IMAGE_VERSION
           ports:
             - containerPort: 4000
