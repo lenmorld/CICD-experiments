@@ -69,7 +69,7 @@ pipeline {
 				sh "git stash save"
 				// sh "git reset --hard HEAD"
 				sh "git checkout master"
-				sh "git pull origin master"
+				// sh "git pull origin master"
 				sh "git reset --hard origin/master"
 				// sh "git fetch origin"
 				// sh "git merge origin/master"
