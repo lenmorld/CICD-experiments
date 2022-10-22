@@ -69,6 +69,9 @@ pipeline {
 				// sh "git reset --hard HEAD"
 				sh "git checkout master"
 				sh "git pull origin master -f"
+				echo "=== after pull: kubernetes/deployment.yaml ===="
+				sh "cat kubernetes/deployment.yaml"
+				echo "=== end ==="
 			}
 		}
 
