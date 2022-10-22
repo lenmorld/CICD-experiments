@@ -64,6 +64,7 @@ pipeline {
 			steps {
 				sh "git config pull.rebase false"
 				sh "git show-ref"
+				sh "git log"
 				sh "git status"
 				sh "git stash save"
 				// sh "git reset --hard HEAD"
