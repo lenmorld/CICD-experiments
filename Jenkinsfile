@@ -27,7 +27,7 @@ pipeline {
 
 				stage('Install') {
 					steps {
-						sh 'echo test 6'
+						sh 'echo test 7'
 						sh 'pwd'
 						sh 'ls'
 						sh 'npm install'
