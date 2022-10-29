@@ -22,6 +22,7 @@ pipeline {
 				sh "rm -rf argocd/"
 				echo "test 1"
 				sh "git clone https://github.com/lenmorld/argocd.git"
+				sh "sleep 1"
 				sh "cd argocd/"
 				sh "pwd"
 				sh "git checkout master"
