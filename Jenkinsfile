@@ -40,10 +40,12 @@ pipeline {
 			steps {
 				echo "test 1"
 				echo "git clone https://github.com/lenmorld/argocd.git"
+				sh "cd argocd/"
 				echo "git checkout master"
 				echo "current version: ${CURRENT_VERSION}"
 				sh "pwd"
 				sh "ls -la"
+				sh "cd .."
 				echo "rm -rf argocd/"
 			}
 		}
