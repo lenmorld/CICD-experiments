@@ -79,7 +79,6 @@ pipeline {
 					// sh "cd .."
 
                     // k8s stuff ===
-					echo "> current kubernetes/deployment.yaml ==="
                     sh "cat kubernetes/deployment.yaml"
                     sh "echo current version: ${CURRENT_VERSION}"
                     // sh "export IMAGE_VERSION=lenmorld/node_app:${CURRENT_VERSION}"
