@@ -7,27 +7,6 @@ pipeline {
 		CURRENT_VERSION= "0.0.${currentBuild.number}"
 	}
     stages {
-		stage('Scripted') {
-			steps {
-				echo 'scripted'
-				script {
-					def browsers  = ['chrome', 'firefox']
-
-					for (int i=0; i < browsers.size(); i++) {
-						echo "Testing the ${browsers[i]} browser"
-					}
-                }
-			}
-		}
-
-		stage('Stage 1') {
-			steps {
-				echo "Test var value: ${TEST_VAR_LENNY}"
-				echo 'printenv: >>>'
-				sh 'printenv'
-			}
-		}
-
 		stage('Stage 2') {
 			steps {
 				echo "branch name: ${env.GIT_BRANCH}"
@@ -38,6 +17,8 @@ pipeline {
 
 		stage('Stage 3 - Git') {
 			steps {
+				sh "pwd"
+				sh "ls -la"
 				echo "rm -rf argocd/"
 				echo "test 1"
 				sh "git clone https://github.com/lenmorld/argocd.git"
