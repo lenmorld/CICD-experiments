@@ -19,7 +19,7 @@ pipeline {
 			steps {
 				sh "pwd"
 				sh "ls -la"
-				echo "rm -rf argocd/"
+				sh "rm -rf argocd/"
 				echo "test 1"
 				sh "git clone https://github.com/lenmorld/argocd.git"
 				sh "cd argocd/"
