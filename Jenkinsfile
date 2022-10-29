@@ -41,6 +41,7 @@ pipeline {
 				echo "test 1"
 				sh "git clone https://github.com/lenmorld/argocd.git"
 				sh "cd argocd/"
+				sh "pwd"
 				sh "git checkout master"
 				echo "current version: ${CURRENT_VERSION}"
 				sh "pwd"
