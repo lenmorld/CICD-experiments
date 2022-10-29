@@ -23,13 +23,16 @@ pipeline {
 				sh "git clone https://github.com/lenmorld/argocd.git"
 				sh "ls -la"
 				sh "sleep 1"
-				sh "cd argocd/"
-				sh "pwd"
-				sh "git checkout master"
-				echo "current version: ${CURRENT_VERSION}"
-				sh "pwd"
-				sh "ls -la"
-				sh "cd .."
+				// sh "cd argocd/"
+				dir("argocd") {
+					sh "pwd"
+					sh "pwd"
+					sh "git checkout master"
+					echo "current version: ${CURRENT_VERSION}"
+					sh "pwd"
+					sh "ls -la"
+					// sh "cd .."
+				}
 				echo "rm -rf argocd/"
 			}
 		}
