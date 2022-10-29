@@ -38,6 +38,7 @@ pipeline {
 
 		stage('Stage 3 - Git') {
 			steps {
+				echo "rm -rf argocd/"
 				echo "test 1"
 				sh "git clone https://github.com/lenmorld/argocd.git"
 				sh "cd argocd/"
