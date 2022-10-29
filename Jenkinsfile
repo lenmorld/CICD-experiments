@@ -34,6 +34,7 @@ pipeline {
 					// sh "cd .."
 				}
 				echo "rm -rf argocd/"
+				sh "ls -la"
 			}
 		}
     }
