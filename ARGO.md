@@ -73,3 +73,6 @@ kubectl apply -f application.yaml
 ```
 kubectl apply -f application.yaml
 ```
+
+# Local tunnel for webhook
+ssh -R 80:localhost:8080 localhost.run
