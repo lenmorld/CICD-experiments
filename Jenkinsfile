@@ -3,117 +3,53 @@ pipeline {
 	environment {
 		CI = 'true'
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+		TEST_VAR_LENNY = 'lennythedev1.0'
 		CURRENT_VERSION= "0.0.${currentBuild.number}"
-    }
+	}
     stages {
-        stage('Node') {
-			agent {
-				docker { 
-					image 'node:16.13.1-alpine'
-					args '-u root:root'
-					// Run the container on the node specified at the
-                    // top-level of the Pipeline, in the same workspace,
-                    // rather than on a new node entirely
-					// reuseNode true
-				}
-			}
+		stage('Scripted') {
+			steps {
+				echo 'scripted'
+				script {
+					def browsers  = ['chrome', 'firefox']
 
-			stages {
-				stage('Version') {
-					steps {
-						sh 'node --version'
+					for (int i=0; i < browsers.size(); i++) {
+						echo "Testing the ${browsers[i]} browser"
 					}
-				}
-
-				stage('Install') {
-					steps {
-						sh 'echo test 9'
-						sh 'pwd'
-						sh 'ls'
-						sh 'npm install'
-					}
-				}
-
-				stage('Test') {
-					steps {
-						sh 'npm test'
-					}
-				}
-        	}
-		}
-
-		stage('Docker build') {
-			steps {
-				sh "docker build -t lenmorld/node_app:${CURRENT_VERSION} ."
+                }
 			}
 		}
 
-        stage('Docker login') {
+		stage('Stage 1') {
 			steps {
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+				echo "Test var value: ${TEST_VAR_LENNY}"
+				echo 'printenv: >>>'
+				sh 'printenv'
 			}
 		}
 
-        stage('Docker push') {
+		stage('Stage 2') {
 			steps {
-				sh "docker push lenmorld/node_app:${CURRENT_VERSION}"
+				echo "branch name: ${env.GIT_BRANCH}"
+				echo "branch name: ${GIT_BRANCH}"
+				echo "current version: ${CURRENT_VERSION}"
 			}
 		}
 
-		stage('Git cleanup') {
+		stage('Stage 3 - Git') {
 			steps {
-				sh "git config pull.rebase false"
-				sh "git show-ref"
-				// sh "git log"
-				sh "git status"
-				sh "git stash save"
-				// sh "git reset --hard HEAD"
-				sh "git checkout master"
-				// sh "git pull origin master"
-				sh "git reset --hard origin/master"
-				// sh "git fetch origin"
-				// sh "git merge origin/master"
-				// sh "git pull"
-				echo "=== after pull: kubernetes/deployment.yaml ===="
-				sh "cat kubernetes/deployment.yaml"
-				echo "=== end ==="
-			}
-		}
-
-		stage('Deploy to k8s') {
-			steps {
-				sh "echo current version: ${CURRENT_VERSION}"
-				// sh "export IMAGE_VERSION=lenmorld/node_app:${CURRENT_VERSION}"
-
-				echo "> Running bash script to deploy"
-
+				echo "git clone https://github.com/lenmorld/argocd.git"
+				echo "git checkout master"
+				echo "current version: ${CURRENT_VERSION}"
 				sh "pwd"
 				sh "ls -la"
-
-				sh "chmod +x jenkins/deploy.sh"
-				sh "jenkins/deploy.sh lenmorld/node_app:${CURRENT_VERSION}"
-			}
-		}
-
-		stage('Git push') {
-			steps {
-				sh "git add ."
-				sh "git commit -m \"update image in deployment.yaml\""
-				sh "git push origin HEAD:master -f"
-			}
-		}
-
-		stage('Git tag') {
-			steps {
-				sh "git status"
-				sh "git tag ${CURRENT_VERSION}"
-				sh "git push origin ${CURRENT_VERSION}"
+				echo "rm -rf argocd/"
 			}
 		}
     }
 	post {
 		always {
-			sh 'docker logout'
+			echo "test var again: ${TEST_VAR_LENNY}"
 		}
 	}
 }
