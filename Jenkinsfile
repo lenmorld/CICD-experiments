@@ -38,6 +38,7 @@ pipeline {
 
 		stage('Stage 3 - Git') {
 			steps {
+				echo "test 1"
 				echo "git clone https://github.com/lenmorld/argocd.git"
 				echo "git checkout master"
 				echo "current version: ${CURRENT_VERSION}"
