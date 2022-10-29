@@ -62,7 +62,7 @@ pipeline {
 
 		stage('GitOps - Argocd repo') {
 			steps {
-				echo "trigger test 3"
+				echo "trigger test 4"
 				sh "pwd"
 				sh "rm -rf argocd/"
 				sh "git clone https://github.com/lenmorld/argocd.git"
