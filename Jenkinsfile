@@ -18,10 +18,10 @@ pipeline {
 		stage('Stage 3 - Git') {
 			steps {
 				sh "pwd"
-				sh "ls -la"
 				sh "rm -rf argocd/"
 				echo "test 1"
 				sh "git clone https://github.com/lenmorld/argocd.git"
+				sh "ls -la"
 				sh "sleep 1"
 				sh "cd argocd/"
 				sh "pwd"
