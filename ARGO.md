@@ -18,6 +18,11 @@ minikube start
 minikube status
 ```
 
+if needed to cleanup, e.g. to start from scratch
+```
+minikube delete
+```
+
 #### to open up a NodePort locally
 ```
 minikube start --ports=30201:30201
@@ -29,6 +34,9 @@ kubectl create namespace argocd
 ```
 
 if needed to cleanup, e.g. to start from scratch
+```
+kubectl delete namespace argocd
+```
 
 ### apply yaml file that installs everything ArgoCD needs 
 
@@ -42,7 +50,7 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 kubectl get pod -n argocd
 ```
 
-Wait until all the pods are ready/running
+Re-run (wait) until all the pods are Running
 
 ### Make ArgoCD server available locally
 using port-forwarding
@@ -80,6 +88,12 @@ argocd app set <APPNAME> --sync-policy automated
 curl http://192.168.49.2:4000
 
 
+# login to Argo via CLI
+
+argocd login localhost:8081
+
+~/telebit http 8081
+
 # Creating app using Declarative
 ```yaml
 apiVersion: v1
@@ -93,11 +107,6 @@ spec:
   - port: 4000
     targetPort: 4000
 ```
-
-argocd login localhost:8081
-
-~/telebit http 8081
-
 
 ### apply declarative setup
 Do this where the manifests are, i.e. in the Argo CD repo (not the app repo where Jenkinsfile is)
@@ -118,3 +127,33 @@ leave defaults††
 ### To verify/manage tunnel
 Login to ngrok
 https://dashboard.ngrok.com/tunnels/agents
+
+
+# Access app once it's deployed
+
+### get status and IP
+
+```bash
+# NodePort e.g. 30201 should show here
+docker port minikube
+
+# NodePort should be here
+kubectl get svc
+
+# 
+minikube ip
+```
+
+### browser
+go to http://localhost:30201
+
+### ssh
+
+```
+minikube ssh
+
+$ curl <minikube-ip>:<nodeport>
+
+# e.g.
+$ curl http://192.168.49.2:30100
+```

@@ -14,5 +14,12 @@ docker run -d \
 	 lenmorld/node_app:latest
 ```
 
-# need to expose local Jenkins in 8080 for Github webhooks
+# Dockerhub - see all pushed images from CI
+
+https://hub.docker.com/repository/docker/lenmorld/node_app
+
+
+# Misc
+
+### need to expose local Jenkins in 8080 for Github webhooks
 npx localtunnel --port 8080
