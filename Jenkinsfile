@@ -27,7 +27,6 @@ pipeline {
 
 				stage('Install') {
 					steps {
-						sh 'echo test 11'
 						sh 'pwd'
 						sh 'ls'
 						sh 'npm install'
@@ -60,41 +59,37 @@ pipeline {
 			}
 		}
 
-		stage('GitOps - Argocd repo') {
+		stage('Deploy using Argocd GitOps') {
 			steps {
-				echo "trigger test 4"
-				sh "pwd"
-				sh "rm -rf argocd/"
+				echo "Pulling Argo CD manifest repo"
 				sh "git clone https://github.com/lenmorld/argocd.git"
-				sh "ls -la"
-				// sh "sleep 1"
-				// sh "cd argocd/"
+				// sh "ls -la"
+				// sh "cd argocd/" // cd doesn't work on Jenkins! use dir
+				echo 'Going inside argocd/ folder to modify manifest'
 				dir("argocd") {
 					sh "pwd"
-					sh "pwd"
 					sh "git checkout master"
-					echo "current version: ${CURRENT_VERSION}"
+					echo "> current version: ${CURRENT_VERSION}"
 					sh "pwd"
 					sh "ls -la"
-					// sh "cd .."
 
-                    // k8s stuff ===
 					echo "> current kubernetes/deployment.yaml ==="
                     sh "cat kubernetes/deployment.yaml"
-                    sh "echo current version: ${CURRENT_VERSION}"
-                    // sh "export IMAGE_VERSION=lenmorld/node_app:${CURRENT_VERSION}"
+
+                    echo "current version: ${CURRENT_VERSION}"
 
                     echo "> Running bash script to deploy"
                     sh "chmod +x jenkins/deploy.sh"
                     sh "jenkins/deploy.sh lenmorld/node_app:${CURRENT_VERSION}"
 
-                    echo "> git push"
+                    echo "> Pushing changes to Argo CD repo"
                     sh "git add ."
                     sh "git commit -m \"update image in deployment.yaml\""
                     sh "git push origin master"
 				}
+				// cleanup this version of argocd/ for next round
 				echo "rm -rf argocd/"
-				sh "ls -la"
+				// sh "ls -la"
 			}
 		}
 
