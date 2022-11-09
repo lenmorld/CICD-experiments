@@ -104,6 +104,7 @@ Do this where the manifests are, i.e. in the Argo CD repo (not the app repo wher
 ```
 kubectl apply -f application.yaml
 ```
+
 ### Configure webhook
 https://github.com/lenmorld/argocd/settings/hooks
 
