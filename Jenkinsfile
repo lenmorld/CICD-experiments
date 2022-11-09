@@ -62,7 +62,7 @@ pipeline {
 		stage('Deploy using Argocd GitOps') {
 			steps {
 				// in case it already exists, clean it up
-				echo "rm -rf argocd/"
+				sh "rm -rf argocd/"
 
 				echo "Pulling Argo CD manifest repo"
 				sh "git clone https://github.com/lenmorld/argocd.git"
