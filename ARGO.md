@@ -1,3 +1,11 @@
+# Git repo
+
+### Jenkins CI:
+git@github.com:lenmorld/CICD-experiments.git
+
+### Argo CD:
+https://github.com/lenmorld/argocd.git
+
 # Setup
 
 ### Open Docker runtime
@@ -96,6 +104,16 @@ Do this where the manifests are, i.e. in the Argo CD repo (not the app repo wher
 ```
 kubectl apply -f application.yaml
 ```
+### Configure webhook
+https://github.com/lenmorld/argocd/settings/hooks
 
-# Local tunnel using localhost.run
-ssh -R 80:localhost:8080 localhost.run
+### Open a ngrok tunnel
+ngrok http https://127.0.0.1:8081
+
+Use tunnel URL as payload URL
+Content-type: application/json
+leave defaults††
+
+### To verify/manage tunnel
+Login to ngrok
+https://dashboard.ngrok.com/tunnels/agents

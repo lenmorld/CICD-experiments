@@ -1,3 +1,6 @@
+# Git repo
+git@github.com:lenmorld/CICD-experiments.git
+
 ### Start Jenkins, if not running yet
 brew services start jenkins-lts
 
@@ -15,3 +18,12 @@ m*****2***
 http://localhost:8080/job/node-docker/
 
 
+### Configure webhook
+https://github.com/lenmorld/CICD-experiments/settings/hooks
+
+#### Local tunnel using localhost.run
+ssh -R 80:localhost:8080 localhost.run
+
+Use tunnel URL as payload URL
+Content-type: application/json
+leave defaults
